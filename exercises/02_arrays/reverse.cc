@@ -1,27 +1,34 @@
 #include <iostream>
-#include <string>
-#include <math.h> 
+#include <typeinfo>
+
+
+template <typename elements>
+elements* new_array(const int n); // inizializza gli array
+template <typename elements> // devo davvero ripetere ogni volta?
+void print_reverse (elements* element, const int n); // printa reverse
 
 int main() {
-  std::cout << "Please tap the dimension of the array you want to be reversed\n";
-  int dim;
-  std::cin >> dim;
-  double array[dim];
-  std::cin.clear();
-  std::cout << "Please, insert the desired array\n";
-  std::cin >> array;
-  }
-  
-  while(floor(integer)!=integer)
-  {
-  std::cout << "Error: the number is not an integer\n";
-  std::cout << "Please, insert an integer\n";
-  std::cin.clear();
-  std::cin.ignore();
-  std::cin >> integer;
-  }
-  
-  std::cout << "Fine," << " [" << integer << "] is a good choice\n";
-  
-  return 0;
+int len;
+std::cin >> len;
+    double* my_array {new_array<double>(len)};
+    print_reverse<double>(my_array, len);
+    delete[] my_array;
 }
+
+template <typename elements>
+elements* new_array(const int n){
+    elements* vector {new elements[n]};
+    for (int i = 0; i < n; ++i) {
+      std::cin >> vector[i] ;
+    }
+    return vector;
+}
+template <typename elements>
+void print_reverse(elements* element, const int n){
+    for (int i = n-1; i>= 0; --i) {
+    
+    std::cout << element[i] << std::endl;
+    
+    }
+}
+
