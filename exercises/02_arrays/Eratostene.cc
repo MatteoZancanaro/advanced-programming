@@ -36,5 +36,6 @@ int main(int argc, char* argv[]) {
         std::cout << k+2 << "\n";
         }
     }
+    
     return 0;
 }
