@@ -3,24 +3,24 @@
 
 template <typename num>
 class Vector{
-  std::unique_ptr<num[]> elems;
+  std::unique_ptr<num[]> elems; // Unique pointer is used in order not to write a destructor.
   unsigned int _size;
 public:
   explicit Vector(const unsigned int s);
 
   unsigned int size() const noexcept;
 
-  num& operator[](const unsigned int i) noexcept;
-  const num& operator[](const unsigned int i) const noexcept;
+  num& operator[](const unsigned int i) noexcept; // this one will be used when the vector is not const.
+  const num& operator[](const unsigned int i) const noexcept; // if vector is called as const, this one is gonna be used.
 
   num& at(const unsigned int i);
   const num& at(const unsigned int i) const;
 
-  num* begin() noexcept;
-  num* end() noexcept;
+  num* begin() noexcept { return elems.get(); } // It returns a num* pointing to the first element of elems.
+  num* end() noexcept { return elems.get() + _size; }
   
-  const num* begin() const noexcept;
-  const num* end() const noexcept;
+  const num* begin() const noexcept { return elems.get(); }
+  const num* end() const noexcept { return elems.get() + _size; }
 
   void resize(const Vector& v);
   void resize(const unsigned int s);
@@ -30,7 +30,7 @@ public:
 template <class num>
 std::ostream& operator<<(std::ostream& os, const Vector<num>& v)
 {
-  for (const auto x : v)
+  for (const auto x : v) //auto is a key word that choses between types of variables in an automatic way (in this case it is num).
     os << x << " ";
   os << std::endl;
   return os;

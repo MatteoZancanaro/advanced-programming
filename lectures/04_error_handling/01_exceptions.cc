@@ -18,7 +18,11 @@ int main() {
     double d = square_root(number);
     std::cout << "square root of " << number << " is " << d << '\n';
     return 0;
+<<<<<<< Updated upstream
   } catch (const Negative_number) {
+=======
+  } catch (Negative_number) { // It catches what has been thrown and save into standard error the error.After that it destroys everything coming before.
+>>>>>>> Stashed changes
     std::cerr << "The square root of a negative number is a complex. "
                  "square_root() is\n"
               << "limited to handle positive double numbers.\n";
@@ -38,7 +42,7 @@ int main() {
 double square_root(const double d) {
   // test the pre-conditions
   if (d < 0)
-    throw Negative_number{};
+    throw Negative_number{}; // It throws an exception.
   if (d > 50)
     throw Bigger_than_expected{};
   return sqrt(d);

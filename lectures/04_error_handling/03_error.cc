@@ -17,8 +17,13 @@ int main() {
     double d = square_root(number);
     std::cout << "square root of " << number << " is " << d << '\n';
     return 0;
+<<<<<<< Updated upstream
   } catch (const std::runtime_error& e) {
     std::cerr << e.what() << std::endl;
+=======
+  } catch (std::runtime_error& e) {
+    std::cerr << e.what() << std::endl; // What prints the the message. 
+>>>>>>> Stashed changes
     return 1;
   } catch (...) {
     std::cerr << "Unknown exception. Aborting.\n";

@@ -4,30 +4,30 @@
 enum class m { jan, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec };
 
 class Date {
-  unsigned int _day;
-  unsigned int _month;
-  unsigned int _year;
+    unsigned int _day;
+    unsigned int _month;
+    unsigned int _year;
 
- public:
-  Date(const unsigned int day, const unsigned int month, const unsigned int year) : _day{day}, _month{month}, _year{year} {}
+    public:
+        Date(unsigned int Day, unsigned int Month, unsigned int Year) : _day{Day}, _month{Month}, _year{Year} {} //I'm calling the constructor this way: Date(what has to be given to the constructor) : variables_to_be_used{dimension} {}
 
-  ~Date() {}
+        ~Date() {} // In this case it does not make anything: no arrays to be delated.
 
-  unsigned int day() const { return _day; }
-  unsigned int month() const { return _month; }
-  unsigned int year() const { return _year; }
-  
-  void add_days();
+        unsigned int day() { return _day; }
+        unsigned int month() { return _month; }
+        unsigned int year() { return _year; }
+
+        //void add_days(unsigned int n);
 
 };
 
 int main() {
-    const int D = 20;
+    unsigned int DD = 20;
     m opt = m:: mar;
-    int M = int(opt);
-    const int Y = 1990;
+    int MM = int(opt);
+    unsigned int YY = 1990;
     
-    Date date(D, M, Y);
+    Date date(DD, MM, YY);
 
     std:: cout << date.day() << "\n";
     std:: cout << date.month() +1 << "\n";
@@ -35,22 +35,27 @@ int main() {
 
   return 0;
 }
-
-void Date::add_days(int n) {
+/*
+void Date::add_days(unsigned int n) {
+    
+    unsigned int D = date.day();
+    unsigned int M = date.month();
+    unsigned int Y = date.year();
+    unsigned int gg;
     
     while (n>0) {
         if (M==0 || M==2 || M==4 || M==6 || M==7 || M==9 || M==11) {
-        unsigned int gg = 31;
+        gg = 31;
         }
         else if (M==3 || M==5 || M==8 || M==10) {
-        unsigned int gg = 30;
+        gg = 30;
         }
         else {
             if (leap(Y)==1) {
-                unsigned int gg = 29;
+                gg = 29;
             }
             else {
-                unsigned int gg = 28;
+                gg = 28;
             }
         }
         
@@ -95,7 +100,7 @@ bool leap(unsigned int yy) {
     return flag;
 
 }
-
+*/
 
 
 

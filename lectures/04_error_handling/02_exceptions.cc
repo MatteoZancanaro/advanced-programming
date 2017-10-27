@@ -30,7 +30,7 @@ int main() {
 double square_root(const double d) {
   // test the pre-conditions
   if (d < 0)
-    throw Square_root_invalid{"Cannot handle negative numbers. You gave me " +
+    throw Square_root_invalid{"Cannot handle negative numbers. You gave me " + //Different arguments of the same struct are printed into standard error for different errors happening.
                               std::to_string(d)};
   if (d > 50)
     throw Square_root_invalid{

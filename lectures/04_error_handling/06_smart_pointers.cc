@@ -1,5 +1,10 @@
 #include <iostream>
+<<<<<<< Updated upstream
 #include <memory>
+=======
+#include <vector>
+#include <memory> //unique pointers
+>>>>>>> Stashed changes
 
 #include "ap_error.h"
 
@@ -7,7 +12,7 @@ class Vector {
   std::unique_ptr<double[]> elem;
 
  public:
-  Vector(const unsigned int l) : elem{new double[l]} {}
+  Vector(const unsigned int l) : elem{new double[l]} {} //there is no destructor for Vector because of the fact that it is a smart pointer and so it is not needed.
   double& operator[](const unsigned int i) {
     return elem[i];
   }  // you can use smart pointers almost like raw pointers

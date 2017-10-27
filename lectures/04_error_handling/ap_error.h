@@ -23,12 +23,12 @@ namespace ap {
   template <typename T1, typename T2>
   void error(const T1& s, const T2& t) {
     std::ostringstream os;
-    os << s << internal::sep << t;
+    os << s << internal::sep << t; // (1)
     error(os.str());
   }
 
   template <typename T1, typename T2, typename... Tail>
-  void error(const T1& f, const T2& s, const Tail&... rest) {
+  void error(const T1& f, const T2& s, const Tail&... rest) { // Here two different argumetns are defined because if only one was inserted, the cicle would have always cicled over the same first element in (1).
     /* std::cout << __PRETTY_FUNCTION__ << std::endl; */
     std::ostringstream os;
     os << f << internal::sep << s;
@@ -46,7 +46,7 @@ namespace ap {
   ap::internal::pretty_error(__FILE__, __LINE__, __PRETTY_FUNCTION__, \
                              __VA_ARGS__)
 
-#ifndef NDEBUG
+#ifndef NDEBUG // if NDEBUG is not defined, not known.
 #define AP_assert(cond, ...)                                              \
   {                                                                       \
     if (!(cond))                                                          \
@@ -64,7 +64,7 @@ std::string NotInRange(const t1& a, const t2& b, const t3& c) {
   return os.str();
 }
 
-namespace ap {
+namespace ap { // this namespace already exist and so I'm just adding a new term.
   namespace internal {
     template <typename T, typename... Tail>
     void pretty_error(const char* sfile,
