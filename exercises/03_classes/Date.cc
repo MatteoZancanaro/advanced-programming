@@ -17,7 +17,7 @@ class Date {
         unsigned int month() { return _month; }
         unsigned int year() { return _year; }
 
-        //void add_days(unsigned int n);
+        void add_days(unsigned int n);
 
 };
 
@@ -35,12 +35,12 @@ int main() {
 
   return 0;
 }
-/*
+
 void Date::add_days(unsigned int n) {
     
-    unsigned int D = date.day();
-    unsigned int M = date.month();
-    unsigned int Y = date.year();
+    unsigned int D = _day; // Perchè non posso scrivere date.day????
+    unsigned int M = _month;
+    unsigned int Y = _year;
     unsigned int gg;
     
     while (n>0) {
@@ -51,7 +51,8 @@ void Date::add_days(unsigned int n) {
         gg = 30;
         }
         else {
-            if (leap(Y)==1) {
+            bool leap_check = leap(Y);
+            if (leap_check==true) {
                 gg = 29;
             }
             else {
@@ -88,19 +89,19 @@ bool leap(unsigned int yy) {
     bool flag;
 
     if (yy%4==0 && yy%100!=0) {
-    flag = 1;
+    flag = true;
     }
     else if (yy%400==0) {
-    flag = 1;
+    flag = true;
     }
     else {
-    flag = 0 ;
+    flag = false ;
     }
     
     return flag;
 
 }
-*/
+
 
 
 
