@@ -3,11 +3,15 @@
 
 template <typename num>
 class Vector{
+<<<<<<< HEAD
   std::unique_ptr<num[]> elems; // Unique pointer is used in order not to write a destructor.
+=======
+>>>>>>> bd8764c80384a9558887246196791d5d53ae30c4
   unsigned int _size;
+  std::unique_ptr<num[]> elems;
 public:
   explicit Vector(const unsigned int s);
-
+  // Vector(std::initializer_list<num> lst);
   unsigned int size() const noexcept;
 
   num& operator[](const unsigned int i) noexcept; // this one will be used when the vector is not const.
@@ -41,7 +45,7 @@ void print_vector(const char* s,const Vector<num>& v)
 {
   std::cout <<"-----------------------------------\n"
 	    << s << "\n"
-	    << "size  : "<< v.size() << "\n"
+	    << " size : "<< v.size() << "\n"
 	    << "elems : " << v
 	    <<"-----------------------------------\n";
 }
