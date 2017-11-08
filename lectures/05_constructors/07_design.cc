@@ -28,7 +28,6 @@ class Vector {
   // copy semantics
   // copy ctor -- deep copy
   Vector(const Vector& v);
-
   // copy assignment -- deep copy
   Vector& operator=(const Vector& v);
 
@@ -39,7 +38,6 @@ class Vector {
     std::cout << "move ctor\n";
   }
 
-  // move assignment
   Vector& operator=(Vector&& v) noexcept {
     std::cout << "move assignment\n";
     _size = std::move(v._size);
@@ -58,6 +56,8 @@ class Vector {
 
   const num* end() const noexcept { return &elem[0] + _size; }
   num* end() noexcept { return &elem[0] + _size; }
+
+  Vector<num>& operator+=(const Vector<num>& rhs);
 };
 
 // copy ctor
@@ -94,24 +94,46 @@ Vector<num>& Vector<num>::operator=(const Vector& v) {
 }
 
 template <typename num>
+Vector<num>& Vector<num>::operator+=(const Vector<num>& rhs) {
+  AP_assert(_size == rhs._size, "Vector lenght mismatch:", _size, "!=",
+            rhs._size, "\nlhs:", *this, "\nrhs:", rhs);
+
+  for (std::size_t i = 0; i < _size; ++i)
+    elem[i] += rhs[i];
+  return *this;
+}
+
+template <typename num>
 Vector<num> operator+(const Vector<num>& lhs, const Vector<num>& rhs) {
   const auto size = lhs.size();
 
   AP_assert(size == rhs.size(), "Vector lenght mismatch:", size, "!=",
             rhs.size(), "\nlhs:", lhs, "\nrhs:", rhs);
-
+  std::cout << "const\n";
   Vector<num> res(size);
   for (std::size_t i = 0; i < size; ++i)
     res[i] = lhs[i] + rhs[i];
-
   return res;
 }
 
 template <typename num>
+Vector<num> operator+(Vector<num>&& lhs, const Vector<num>& rhs) {
+  const auto size = lhs.size();
+  std::cout << "&&\n";
+
+  AP_assert(size == rhs.size(), "Vector lenght mismatch:", size, "!=",
+            rhs.size(), "\nlhs:", lhs, "\nrhs:", rhs);
+
+  return std::move(lhs += rhs);
+}
+
+template <typename num>
 std::ostream& operator<<(std::ostream& os, const Vector<num>& v) {
-  for (const auto& x : v)
-    os << x << " ";
-  os << std::endl;
+  if (v.size() < 30) {
+    for (const auto& x : v)
+      os << x << " ";
+    os << std::endl;
+  }
   return os;
 }
 
@@ -161,7 +183,7 @@ int main() {
 
     std::cout << "\nv4 = v3 + v3 + v2 + v3; calls\n";
     v4 = v3 + v3 + v2 + v3;
-    std::cout << "v4 = " << v4;
+    std::cout << v4;
 
     std::cout << "\nLet's test our assert in operator+\n";
     std::cout << "Vector<int> a{5};\n"
