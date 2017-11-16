@@ -1,13 +1,13 @@
 #include <iostream>
-#include <ap_error.h>
+//#include <ap_error.h>
 
 struct Animal {
   unsigned int age;
   double weight;
 
   Animal(const unsigned int a, const double w) : age{a}, weight{w} {
-    if (weight < 0)
-      AP_error("invalid weight:", w);
+    //if (weight < 0)
+      //AP_error("invalid weight:", w);
   }
 
   Animal() : Animal{0, 0} {}  // delegating constructor

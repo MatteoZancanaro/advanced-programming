@@ -30,7 +30,7 @@ struct Snake {
   Snake(const bool b) : _animal{}, dangerous{b} {}
   void info() const noexcept {
     _animal.info();
-    std::cout << "dangerous:\t" << (dangerous ? "true" : "false") << std::endl;
+    std::cout << "dangerous:\t" << (dangerous ? "true" : "false") << std::endl; // first it checks if dangerous is true and in case it prints it, otherway it prints false.
   }
   void speak() const noexcept { std::cout << "ssss\n"; }
 };

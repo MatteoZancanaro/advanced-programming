@@ -17,7 +17,7 @@ struct Animal {
     std::cout << "age:\t" << age << '\n' << "weight:\t" << weight << '\n';
   }
 
-  virtual ~Animal() {}
+  virtual ~Animal() {} // IMPORTANT!! When you have virtual functions you have to mark the destructr as virtual.
 };
 
 struct Dog : public Animal {
